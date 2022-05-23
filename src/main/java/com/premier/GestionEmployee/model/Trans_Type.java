@@ -1,6 +1,6 @@
 package com.premier.GestionEmployee.model;
 
-public enum TransType {
+public enum Trans_Type {
     SALAIRE,
     DECAISSEMENT
 }

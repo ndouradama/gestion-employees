@@ -22,14 +22,11 @@ public class TransactionService {
     }
 
     public void deleteTransactions(final Long id) {
-
-
         transactionRepository.deleteById(id);
     }
 
     public Transactions saveTransactions(Transactions transactions) {
-        Transactions saveTransactions = (Transactions) transactionRepository.save(transactions);
-        return saveTransactions;
+        return transactionRepository.save(transactions);
     }
 }
 
