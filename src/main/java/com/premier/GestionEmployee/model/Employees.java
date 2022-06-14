@@ -1,19 +1,17 @@
 package com.premier.GestionEmployee.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
+@Builder
 public class Employees extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

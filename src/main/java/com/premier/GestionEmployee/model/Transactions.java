@@ -1,9 +1,6 @@
 package com.premier.GestionEmployee.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,19 +19,28 @@ public class Transactions {
     @Column()
     private long amont;
 
-    @Column ()
-    private int payement_date;
+    @Column()
+    private Date payement_date;
+
+
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
+    private Users created_by;
+
+    @ManyToOne
+    @JoinColumn(name = "employees_id")
+    private Employees employees;
+
 
     @Column()
-    private String created_by;
-
-    @Column()
-    private String personnel;
+    private Trans_Type transType;
 
     @Column()
     private String description;
 
     @Column()
-    private Trans_Type transType;
+    private Mounth mounth;
+
+    private Statuts statuts;
 
 }

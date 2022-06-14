@@ -2,12 +2,16 @@ package com.premier.GestionEmployee.service;
 
 import com.premier.GestionEmployee.model.Employees;
 import com.premier.GestionEmployee.repository.EmployeesRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmployeesService {
 
     @Autowired
