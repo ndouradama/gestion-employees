@@ -19,4 +19,5 @@ public class Salaire {
     private Trans_Type transType;
     private Mounth mounth;
     private Statuts statuts;
+    private String dec;
 }

@@ -1,9 +1,11 @@
 package com.premier.GestionEmployee.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.premier.GestionEmployee.model.Employees;
+import com.premier.GestionEmployee.model.Status_type;
 import com.premier.GestionEmployee.model.Users;
 import com.premier.GestionEmployee.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,18 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public Iterable<Users> getUsers() {
 		return usersRepository.findAll();
 	}
+
 	public Optional<Users> getUsers(Long id) {
         return usersRepository.findById(id);
     }
+
+//	public Optional<Users> getUsers(String username) {
+//		return Optional.ofNullable(usersRepository.findByUsername(username));
+//	}
+
+//	public List<Users> getUsers(Status_type status_user) {
+//		return usersRepository.findByStatus(status_user);
+//	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -43,6 +54,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		public Users saveUsers(Users users) {
 			users.setPassword(bcryptEncoder.encode(users.getPassword()));
+			Optional<Users> users1 = usersRepository.findById(users.getId()) ;
+			if (users1.isPresent()){
+				throw new RuntimeException("cet utilisateur existe deja");
+			}
 			return usersRepository.save(users);
 
 

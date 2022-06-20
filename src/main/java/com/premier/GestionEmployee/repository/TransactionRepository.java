@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hibernate.loader.Loader.SELECT;
 
@@ -16,9 +17,12 @@ import static org.hibernate.loader.Loader.SELECT;
 public interface TransactionRepository extends JpaRepository <Transactions , Long> {
 
 
-        public List<Transactions> findByStatuts(Statuts statuts);
-
+//        public List<Transactions> findByStatuts(Statuts statuts);
+//
         public List<Transactions> findByStatutsAndMounth(Statuts statuts , Mounth mounth);
+
+        @Query(value = "select * from transaction WHERE cout = :cout",nativeQuery = true)
+        Optional<Transactions> updateTransactions();
 
 
 //        @Query(SELECT Transactions FROM Statuts statuts   where Transactio = ?1 and u.lastname = ?2)

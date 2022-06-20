@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @AllArgsConstructor
@@ -23,5 +24,7 @@ public class Users extends Person{
 
     @Column()
     private String password;
+
+    private Status_type status_user;
 
 }

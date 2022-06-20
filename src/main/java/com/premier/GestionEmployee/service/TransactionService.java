@@ -26,8 +26,8 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public void deleteTransactions(Long id) {
-        transactionRepository.deleteById(id);
+    public Optional <Transactions> updateTransactions() {
+       return transactionRepository.updateTransactions();
     }
 
     public Transactions saveTransactions(Transactions transactions) {
@@ -35,12 +35,12 @@ public class TransactionService {
         if (transactions1.isPresent()){
             throw new RuntimeException("Cette transaction existe deja");
         }
-////        Optional<Employees>present1= employeesService.getEmployee(transactions.getEmployees().getId());
-//
-//      boolean present1 = employeesService.getEmployee(transactions.getEmployees().getId()).isPresent();
-//        if (!present1.isPresent()) {
-//            throw new RuntimeException("employées non existant");
-//        }
+//        Optional<Employees>present1= employeesService.getEmployee(transactions.getEmployees().getId());
+
+      boolean present1 = employeesService.getEmployee(transactions.getEmployees().getId()).isPresent();
+        if (!present1) {
+            throw new RuntimeException("employées non existant");
+        }
         return transactionRepository.save(transactions);
     }
     public Transactions saveDecaissement(Decaissement decaissement){
@@ -52,6 +52,7 @@ public class TransactionService {
         transactions.setCreated_by(decaissement.getCreated_by());
         transactions.setPayement_date(decaissement.getPayement_date());
         transactions.setMounth(decaissement.getMounth());
+//        9
         return transactionRepository.save(transactions);
     }
 
@@ -64,10 +65,10 @@ public class TransactionService {
         transactions.setPayement_date(salaire.getPayement_date());
         transactions.setMounth(salaire.getMounth());
         transactions.setStatuts(salaire.getStatuts());
-//        boolean present2 = salaire.getTransType()==Trans_Type.SALAIRE && !transactions.getDescription().equals("");
-//        if (present2){
-//            throw new RuntimeException("salaire ne doit pas contenir de description");
-//        }
+        boolean present2 = salaire.getTransType()==Trans_Type.SALAIRE && !transactions.getDescription().equals("");
+        if (present2){
+            throw new RuntimeException("salaire ne doit pas contenir de description");
+        }
 
         boolean present3 = salaire.getStatuts()==Statuts.PAYEMENT_COMPLETE && salaire.getMounth().equals(salaire.getMounth());
         if (present3){

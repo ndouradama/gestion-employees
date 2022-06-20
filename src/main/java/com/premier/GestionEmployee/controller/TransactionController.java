@@ -20,6 +20,12 @@ public class TransactionController {
         return transactionService.getTransactions();
     }
 
+    //moditier une transaction
+    @PutMapping("/transaction")
+    public Optional<Transactions> updateTransaction() {
+        return transactionService.updateTransactions();
+    }
+
    //recherche par id
     @GetMapping("/transactions/{id}")
     public Optional<Transactions> getTransaction(@PathVariable("id") Long id) {

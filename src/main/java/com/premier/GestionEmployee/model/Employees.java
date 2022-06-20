@@ -4,6 +4,7 @@ package com.premier.GestionEmployee.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
@@ -22,6 +23,9 @@ public class Employees extends Person {
 
     @Column()
     private String poste;
+
+    @Column()
+    private Status_type status_Type;
 
 
 

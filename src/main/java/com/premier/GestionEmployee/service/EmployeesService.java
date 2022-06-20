@@ -1,12 +1,17 @@
 package com.premier.GestionEmployee.service;
 
 import com.premier.GestionEmployee.model.Employees;
+import com.premier.GestionEmployee.model.Status_type;
+import com.premier.GestionEmployee.model.Transactions;
 import com.premier.GestionEmployee.repository.EmployeesRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +26,16 @@ public class EmployeesService {
         return employeeRepository.findById(id);
     }
 
+
+    public List<Employees> getEmployee(Status_type status_Type) {
+        return employeeRepository.findByStatus_type(status_Type);
+    }
+
+    public List <Employees> updateStatus(Status_type status_Type){
+        return employeeRepository.updateStatus_type(status_Type);
+    }
+
+
     public Iterable<Employees> getEmployees() {
         return employeeRepository.findAll();
     }
@@ -31,6 +46,11 @@ public class EmployeesService {
 
     public Employees saveEmployee(Employees employee) {
         Employees savedEmployee = (Employees) employeeRepository.save(employee);
+        List<Employees> present1 = employeeRepository.findByCin(employee.getCin());
+        if (present1.equals(employee.getCin())) {
+            throw new RuntimeException("employées deja existant");
+        }
+
         return savedEmployee;
     }
 }
