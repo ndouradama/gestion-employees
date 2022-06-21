@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import javax.annotation.security.RolesAllowed;
 
 
 @RestController
@@ -51,6 +51,7 @@ public class JwtAuthenticationController {
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@RolesAllowed("ADMIN")
 	public ResponseEntity<?> saveUsers(@RequestBody Users user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.saveUsers(user));
 	}

@@ -35,6 +35,10 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.inMemoryAuthentication()
+                .withUser("user").password(passwordEncoder().encode("passer1234")).roles("USER")
+                .and()
+                .withUser("admin").password(passwordEncoder().encode("passer123")).roles("ADMIN", "USER");
     }
 
     @Bean
@@ -53,9 +57,11 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate", "/users").permitAll()
-                    .and().
-                    exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasRole("USER").anyRequest().authenticated()
+                    .and();
+//                exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         //filter to validate the tokens with every request
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

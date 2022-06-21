@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +27,11 @@ public class Users extends Person{
     @Column()
     private String password;
 
+    @Column
     private Status_type status_user;
+
+    private Role roles;
+
+
 
 }

@@ -19,10 +19,10 @@ public interface TransactionRepository extends JpaRepository <Transactions , Lon
 
 //        public List<Transactions> findByStatuts(Statuts statuts);
 //
-        public List<Transactions> findByStatutsAndMounth(Statuts statuts , Mounth mounth);
+//        public List<Transactions> findByStatutsAndMounth(Statuts statuts , Mounth mounth);
 
-        @Query(value = "select * from transaction WHERE cout = :cout",nativeQuery = true)
-        Optional<Transactions> updateTransactions();
+        @Query(value = "select * from transaction WHERE id = ?1" ,nativeQuery = true)
+        List<Transactions> updateTransactions(Long id);
 
 
 //        @Query(SELECT Transactions FROM Statuts statuts   where Transactio = ?1 and u.lastname = ?2)

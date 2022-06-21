@@ -31,7 +31,10 @@ public class EmployeesService {
         return employeeRepository.findByStatus_type(status_Type);
     }
 
-    public List <Employees> updateStatus(Status_type status_Type){
+//    public List <Employees> updateStatus(Status_type status_Type){
+//        return employeeRepository.updateStatus_type(status_Type);
+//    }
+    public Optional<Employees> updatestatus(Status_type status_Type){
         return employeeRepository.updateStatus_type(status_Type);
     }
 
@@ -45,11 +48,11 @@ public class EmployeesService {
     }
 
     public Employees saveEmployee(Employees employee) {
-        Employees savedEmployee = (Employees) employeeRepository.save(employee);
-        List<Employees> present1 = employeeRepository.findByCin(employee.getCin());
-        if (present1.equals(employee.getCin())) {
-            throw new RuntimeException("employées deja existant");
+       Optional <Employees> employees = employeeRepository.findByCin(employee.getCin());
+        if(employees.isPresent()){
+            throw new RuntimeException("cet employée exit déja");
         }
+        Employees savedEmployee = (Employees) employeeRepository.save(employee);
 
         return savedEmployee;
     }

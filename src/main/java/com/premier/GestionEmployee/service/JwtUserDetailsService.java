@@ -54,12 +54,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 		public Users saveUsers(Users users) {
 			users.setPassword(bcryptEncoder.encode(users.getPassword()));
-			Optional<Users> users1 = usersRepository.findById(users.getId()) ;
-			if (users1.isPresent()){
-				throw new RuntimeException("cet utilisateur existe deja");
+			Optional<Users> user = usersRepository.findByMail(users.getMail());
+			if(user.isPresent()){
+				throw new RuntimeException("cet utilisateur exite déja");
 			}
 			return usersRepository.save(users);
 
 
 	}
+
 }

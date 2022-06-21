@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -18,10 +19,10 @@ public interface EmployeesRepository extends JpaRepository <Employees , Long> {
      List<Employees> findByStatus_type(Status_type status_Type);
 
     @Query(value = "select * from employees where status_type = ?1",nativeQuery = true)
-     List<Employees> updateStatus_type(Status_type status_Type);
+    Optional<Employees> updateStatus_type(Status_type status_Type);
 
     @Query(value = "select * from employees where cin = ?1",nativeQuery = true)
-    List<Employees> findByCin(int cin);
+    Optional<Employees>  findByCin(int cin);
 
 
 

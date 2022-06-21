@@ -14,8 +14,8 @@ import java.util.Date;
 public class Salaire {
     private long amont;
     private Date payement_date;
-    private Users created_by;
-    private Employees employees;
+    private Long created_by;
+    private Long employees;
     private Trans_Type transType;
     private Mounth mounth;
     private Statuts statuts;
