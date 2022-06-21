@@ -16,13 +16,13 @@ public class EmployeesController {
     @Autowired
     private EmployeesService employeeService;
 
-    @GetMapping("/employees")
+    @GetMapping("/user/employees")
     @RolesAllowed("USER")
     public Iterable<Employees> getEmployees() {
         return employeeService.getEmployees();
     }
 
-    @GetMapping("/employe/{id}")
+    @GetMapping("user//employe/{id}")
     @RolesAllowed("USER")
     public Optional<Employees> getEmployee(@PathVariable("id") Long id) {
         return employeeService.getEmployee(id);
@@ -33,7 +33,7 @@ public class EmployeesController {
     public Optional<Employees> updateEmployee(@PathVariable("status_Type")Status_type status_Type) {
         return employeeService.updatestatus(status_Type);
     }
-    @PostMapping("/employees")
+    @PostMapping("/admin/employees")
     @RolesAllowed("ADMIN")
     public Employees createEmployee(@RequestBody() Employees employee) {
         return employeeService.saveEmployee(employee);

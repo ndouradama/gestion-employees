@@ -50,7 +50,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/users", method = RequestMethod.POST)
 	@RolesAllowed("ADMIN")
 	public ResponseEntity<?> saveUsers(@RequestBody Users user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.saveUsers(user));
