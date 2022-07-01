@@ -4,6 +4,7 @@ import com.premier.GestionEmployee.dto.Decaissement;
 import com.premier.GestionEmployee.dto.Salaire;
 import com.premier.GestionEmployee.model.Transactions;
 import com.premier.GestionEmployee.service.TransactionService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
+@Api(tags = "Webservice des transactions")
 @RestController
 public class TransactionController {
     @Autowired

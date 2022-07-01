@@ -3,6 +3,7 @@ package com.premier.GestionEmployee.controller;
 import com.premier.GestionEmployee.model.Employees;
 import com.premier.GestionEmployee.model.Status_type;
 import com.premier.GestionEmployee.service.EmployeesService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
 
+@Api(tags = "Webservice des employés")
 @RestController
 public class EmployeesController {
     @Autowired

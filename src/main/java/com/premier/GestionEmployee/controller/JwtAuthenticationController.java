@@ -7,6 +7,7 @@ import com.premier.GestionEmployee.model.JwtResponse;
 import com.premier.GestionEmployee.model.Users;
 import com.premier.GestionEmployee.securityconfig.JwtTokenUtil;
 import com.premier.GestionEmployee.service.JwtUserDetailsService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.security.RolesAllowed;
 
-
+@Api(tags = "Webservice d'authentification")
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
